@@ -8,12 +8,13 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.Executor;
+
 @Component
 @Aspect
 public class Bard {
     @Pointcut("execution(* io.khasang.gahelp.service.impl.KnightServiceImpl.getAchievement(..))")
     public void serviceBefore() {
-
     }
 
     @Before("execution(* io.khasang.gahelp.service.impl.KnightServiceImpl.getAchievement(..))")

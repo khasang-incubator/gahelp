@@ -1,6 +1,7 @@
 package io.khasang.gahelp.controller;
 
 import io.khasang.gahelp.model.Cat;
+import io.khasang.gahelp.model.CreateTable;
 import io.khasang.gahelp.model.Dog;
 import io.khasang.gahelp.service.KnightService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ public class AppController {
     private Cat cat;
     private Dog dog;
     private KnightService knightService;
+    private CreateTable createTable;
 
     @RequestMapping("/")
     public String getStatus() {
@@ -40,6 +42,19 @@ public class AppController {
         return "knight";
     }
 
+    @RequestMapping("create")
+    public String getTableCreationStatus(Model model) {
+        model.addAttribute("status", createTable.tableCreationStatus());
+        return "table";
+    }
+
+    @RequestMapping("/cat/{name}")
+    public String getCatCount(@PathVariable("name") String name, Model model) {
+        model.addAttribute("name",name);
+        model.addAttribute("count", createTable.getInfo(name));
+        return "catinfo";
+    }
+
     @Autowired
     public void setCat(Cat cat) {
         this.cat = cat;
@@ -53,5 +68,10 @@ public class AppController {
     @Autowired
     public void setKnightService(KnightService knightService) {
         this.knightService = knightService;
+    }
+
+    @Autowired
+    public void setCreateTable(CreateTable createTable) {
+        this.createTable = createTable;
     }
 }
