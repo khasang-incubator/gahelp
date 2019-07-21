@@ -5,6 +5,8 @@ import io.khasang.gahelp.model.CreateTable;
 import io.khasang.gahelp.model.Dog;
 import io.khasang.gahelp.service.KnightService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,10 +32,21 @@ public class AppController {
         return "hello";
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping("/info")
     public String getInfo(Model model) {
         model.addAttribute("info", dog.getInfo());
         return "info";
+    }
+
+    @RequestMapping("/admin")
+    public String getAdminPage() {
+        return "admin";
+    }
+
+    @RequestMapping("/user")
+    public String getUserPage() {
+        return "user";
     }
 
     @RequestMapping("/knight/fight/{enemy}")
@@ -50,9 +63,16 @@ public class AppController {
 
     @RequestMapping("/cat/{name}")
     public String getCatCount(@PathVariable("name") String name, Model model) {
-        model.addAttribute("name",name);
+        model.addAttribute("name", name);
         model.addAttribute("count", createTable.getInfo(name));
         return "catinfo";
+    }
+
+    @RequestMapping("/password/{password}")
+    public String getEncryptPassword(@PathVariable("password") String password, Model model) {
+        model.addAttribute("password", password);
+        model.addAttribute("passwordAfterEncode", new BCryptPasswordEncoder().encode(password));
+        return "password";
     }
 
     @Autowired
