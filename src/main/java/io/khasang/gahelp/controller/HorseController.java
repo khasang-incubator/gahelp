@@ -3,6 +3,7 @@ package io.khasang.gahelp.controller;
 import io.khasang.gahelp.entity.Horse;
 import io.khasang.gahelp.service.HorseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,7 @@ public class HorseController {
         return horseService.add(horse);
     }
 
+    @Secured(value = "ROLE_USER")
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Horse getHorseById(@PathVariable("id") long id) {
