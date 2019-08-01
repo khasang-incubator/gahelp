@@ -2,7 +2,6 @@ package io.khasang.gahelp.controller;
 
 import io.khasang.gahelp.entity.Horse;
 import io.khasang.gahelp.service.HorseService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,11 @@ import java.util.List;
 @RequestMapping("/horse")
 public class HorseController {
 
-    private HorseService horseService;
+    private final HorseService horseService;
+
+    public HorseController(HorseService horseService) {
+        this.horseService = horseService;
+    }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
@@ -21,7 +24,7 @@ public class HorseController {
         return horseService.add(horse);
     }
 
-    @Secured(value = "ROLE_USER")
+//    @Secured(value = "ROLE_ADMIN")
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Horse getHorseById(@PathVariable("id") long id) {
@@ -30,7 +33,7 @@ public class HorseController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<Horse> getAll(){
+    public List<Horse> getAll() {
         return horseService.getAll();
     }
 
@@ -40,8 +43,4 @@ public class HorseController {
         return horseService.delete(id);
     }
 
-    @Autowired
-    public void setHorseService(HorseService horseService) {
-        this.horseService = horseService;
-    }
 }
