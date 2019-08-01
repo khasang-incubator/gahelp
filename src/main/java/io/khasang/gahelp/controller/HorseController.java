@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("/horse")
 public class HorseController {
 
+    // for pull request example
     private final HorseService horseService;
 
     public HorseController(HorseService horseService) {
