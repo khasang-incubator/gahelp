@@ -48,6 +48,12 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
         return getSession().createQuery(criteriaQuery).list();
     }
 
+    @Override
+    public T update(T entity) {
+        getSession().update(entity);
+        return entity;
+    }
+
     private Session getSession() {
         return sessionFactory.getCurrentSession();
     }
