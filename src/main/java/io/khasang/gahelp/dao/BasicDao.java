@@ -1,7 +1,5 @@
 package io.khasang.gahelp.dao;
 
-import io.khasang.gahelp.entity.Horse;
-
 import java.util.List;
 
 public interface BasicDao<T> {
@@ -35,4 +33,11 @@ public interface BasicDao<T> {
      * @return deleted entity
      */
     T delete(T entity);
+
+    /**
+     * service for deletion all entity
+     *
+     * @return deleted all entity
+     */
+    List<T> deleteAll();
 }

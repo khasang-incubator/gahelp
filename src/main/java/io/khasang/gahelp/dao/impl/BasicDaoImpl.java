@@ -1,6 +1,7 @@
 package io.khasang.gahelp.dao.impl;
 
 import io.khasang.gahelp.dao.BasicDao;
+import io.khasang.gahelp.entity.Horse;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,16 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
     public T delete(T entity) {
         getSession().delete(entity);
         return entity;
+    }
+
+    @Override
+    public List<T> deleteAll() {
+        CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
+        CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
+        Root<T> root = criteriaQuery.from(entityClass);
+
+        criteriaQuery.select(root);
+        return (List<T>) getSession().createQuery(String.valueOf(deleteAll()));
     }
 
     @Override
