@@ -47,6 +47,8 @@ public class MonsterController {
         return monsterService.delete(id);
     }
 
+
+    //TODO так и не смог понять как удалить всё
     @RequestMapping(value = "/deleteall", method = RequestMethod.DELETE)
     @ResponseBody
     public List<Monster> deleteAll() {
