@@ -47,11 +47,18 @@ public class MonsterController {
         return monsterService.delete(id);
     }
 
+//    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+//    @ResponseBody
+//    public Monster updateMonster(@PathVariable("id") long id) {
+//        return monsterService.update(id);
+//    }
 
-    //TODO так и не смог понять как удалить всё
-    @RequestMapping(value = "/deleteall", method = RequestMethod.DELETE)
-    @ResponseBody
-    public List<Monster> deleteAll() {
-        return monsterService.deleteAll();
-    }
+
+
+//    //TODO так и не смог понять как удалить всё
+//    @RequestMapping(value = "/deleteall", method = RequestMethod.DELETE)
+//    @ResponseBody
+//    public List<Monster> deleteAll() {
+//        return monsterService.deleteAll();
+//    }
 }

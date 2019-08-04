@@ -83,5 +83,4 @@ public class HorseControllerIntegrationTest {
         horse.setDescription("Fast");
         return horse;
     }
-
 }

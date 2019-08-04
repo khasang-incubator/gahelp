@@ -28,6 +28,10 @@ public class Monster {
     //интуиция
     private int intuition;
 
+    public long getId() {
+        return id;
+    }
+
     public String getType() {
         return type;
     }

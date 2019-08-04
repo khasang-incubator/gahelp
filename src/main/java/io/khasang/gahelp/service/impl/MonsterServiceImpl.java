@@ -33,10 +33,15 @@ public class MonsterServiceImpl implements MonsterService {
         return monsterDao.delete(getById(id));
     }
 
-    @Override
-    public List<Monster> deleteAll() {
-        return monsterDao.deleteAll();
-    }
+//    @Override
+//    public Monster update(long id) {
+//        return monsterDao.update(getById(id));
+//    }
+
+//    @Override
+//    public List<Monster> deleteAll() {
+//        return monsterDao.deleteAll();
+//    }
 
     @Autowired
     public void setMonsterDao(MonsterDao monsterDao) {
