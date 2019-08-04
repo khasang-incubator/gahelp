@@ -9,6 +9,10 @@ public class Monster {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     //тип монстра (орк, огр, гоблин...)
     private String type;
     //очки здоровья

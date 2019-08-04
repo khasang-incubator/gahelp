@@ -22,7 +22,7 @@ public class MonsterControllerIntegrationTest {
 
     @Test
     public void checkMonsterAdd() {
-        Monster troll = createMonster();
+        Monster monster = createMonster();
 
         RestTemplate template = new RestTemplate();
         ResponseEntity<Monster> responseEntity = template.exchange(
@@ -30,7 +30,7 @@ public class MonsterControllerIntegrationTest {
                 HttpMethod.GET,
                 null,
                 Monster.class,
-                troll.getId()
+                monster.getId()
         );
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -75,22 +75,25 @@ public class MonsterControllerIntegrationTest {
         assertNotNull(receivedMonster);
     }
 
-//    @Test
-//    public void checkUpdateMonster() {
-//        Monster monster = createMonster();
-//        RestTemplate template = new RestTemplate();
-//        ResponseEntity<Monster> responseEntity = template.exchange(
-//                ROOT + UPDATE + "/{id}",
-//                HttpMethod.POST,
-//                null,
-//                Monster.class,
-//                monster.getId()
-//        );
-//
-//        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-//        Monster receivedMonster = responseEntity.getBody();
-//        assertNotNull(receivedMonster);
-//    }
+    @Test
+    public void checkUpdateMonster() {
+        Monster monster = createMonster();
+        monster.setHealthPoint(monster.getHealthPoint()+100);
+        HttpEntity<Monster> entity = new HttpEntity<>(monster, null);
+
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<Monster> responseEntity = template.exchange(
+                ROOT + UPDATE + "/{id}",
+                HttpMethod.PUT,
+                entity,
+                Monster.class,
+                monster.getId()
+        );
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Monster receivedMonster = responseEntity.getBody();
+        assertNotNull(receivedMonster);
+    }
 
     private Monster createMonster() {
         HttpHeaders headers = new HttpHeaders();

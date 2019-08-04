@@ -47,11 +47,11 @@ public class MonsterController {
         return monsterService.delete(id);
     }
 
-//    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-//    @ResponseBody
-//    public Monster updateMonster(@PathVariable("id") long id) {
-//        return monsterService.update(id);
-//    }
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    public Monster updateMonsterById(@PathVariable("id") long id, @RequestBody Monster monster) {
+        return monsterService.updateMonsterById(id, monster);
+    }
 
 
 

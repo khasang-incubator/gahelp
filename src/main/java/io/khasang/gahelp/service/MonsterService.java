@@ -14,7 +14,7 @@ public interface MonsterService {
 
     Monster delete(long id);
 
-//    Monster update(long id);
+    Monster updateMonsterById(long id, Monster monster);
 
 //    List<Monster> deleteAll();
 }
