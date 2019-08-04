@@ -7,6 +7,7 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -78,7 +79,7 @@ public class MonsterControllerIntegrationTest {
     @Test
     public void checkUpdateMonster() {
         Monster monster = createMonster();
-        monster.setHealthPoint(monster.getHealthPoint()+100);
+        monster.setHealthPoint(monster.getHealthPoint() + new Random().nextInt(100));
         HttpEntity<Monster> entity = new HttpEntity<>(monster, null);
 
         RestTemplate template = new RestTemplate();
