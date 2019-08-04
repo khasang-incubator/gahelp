@@ -55,7 +55,7 @@ public class CharacterControllerIntegrationTest {
     @Test
     public void checkUpdateCharacter() {
         // Select ID of an object to update
-        int updateID = 1;
+        int updateID = 40;
 
         Character character = updateCharacter();
         HttpEntity<Character> entity = new HttpEntity<>(character, null);
@@ -103,25 +103,41 @@ public class CharacterControllerIntegrationTest {
                 Character.class)
                 .getBody();
         assertNotNull(createdCharacter);
-        assertEquals("Strength", createdCharacter.getName());
+        assertEquals("Lightning", createdCharacter.getName());
         return createdCharacter;
     }
 
     private Character preFillCharacter() {
         Character character = new Character();
-        character.setName("Strength");
-        character.setAlias("STR");
-        character.setDescription("This is just a fake param for testing purposes");
-        character.setStat(10);
+        character.setName("Lightning");
+        character.setGender("Female");
+        character.setAge(25);
+        character.setPet("Nona");
+        character.setRace("Elf");
+        character.setSpeciality("Assassin");
+        character.setCharisma(11);
+        character.setConstitution(3);
+        character.setStrength(15);
+        character.setDexterity(16);
+        character.setIntelligence(9);
+        character.setWisdom(14);
         return character;
     }
 
     private Character updateCharacter() {
         Character character = new Character();
-        character.setName("Agility");
-        character.setAlias("AGI");
-        character.setDescription("THis most OP parameter to have in MMO game");
-        character.setStat(5);
+        character.setName("Riven");
+        character.setGender("Female");
+        character.setAge(28);
+        character.setPet("Exiled");
+        character.setRace("Human");
+        character.setSpeciality("Assassin");
+        character.setCharisma(12);
+        character.setConstitution(4);
+        character.setStrength(16);
+        character.setDexterity(17);
+        character.setIntelligence(10);
+        character.setWisdom(15);
         return character;
     }
 }
