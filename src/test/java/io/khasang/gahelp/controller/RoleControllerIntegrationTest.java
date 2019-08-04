@@ -38,6 +38,7 @@ public class RoleControllerIntegrationTest {
     @Test
     public void checkAllRoles() {
         createRole();
+        createRole();
 
         RestTemplate template = new RestTemplate();
         ResponseEntity<List<Role>> entity = template.exchange(
@@ -54,7 +55,7 @@ public class RoleControllerIntegrationTest {
 
     @Test
     public void checkUpdateRole() {
-        int updateId = 2;
+        int updateId = 27;
 
         Role updatedRole = updatedRole();
         HttpEntity<Role> entity = new HttpEntity<>(updatedRole, null);
@@ -67,7 +68,9 @@ public class RoleControllerIntegrationTest {
                 Role.class,
                 updateId
         );
+        assertNotNull(responseEntity.getBody());
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals(responseEntity.getBody().getName(), updatedRole.getName());
     }
 
     @Test
