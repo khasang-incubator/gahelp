@@ -32,8 +32,6 @@ public class UserControllerIntegrationTest {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        String oldLogin = user.getLogin();
-//        user.setLogin("A" + System.currentTimeMillis());
         user.setName("123");
         user.setRoleId(11);
         user.setIsBlocked(false);
@@ -45,7 +43,7 @@ public class UserControllerIntegrationTest {
                 HttpMethod.PUT,
                 entity,
                 User.class,
-                oldLogin
+                user.getLogin()
         );
 
         assertEquals(HttpStatus.OK, responseEntityUpdate.getStatusCode());
@@ -62,7 +60,7 @@ public class UserControllerIntegrationTest {
 
         assertEquals(user.getName(), updatedUser.getName());
         assertEquals(user.getRoleId(), updatedUser.getRoleId());
-        assertEquals(oldLogin, updatedUser.getLogin());
+        assertEquals(user.getLogin(), updatedUser.getLogin());
     }
 
     @Test

@@ -66,19 +66,9 @@ public interface UserService {
     User deleteById(long id);
 
     /**
-     * ervice for updating user by login
-     * @param login - user's login
+     * ervice for updating user
      * @param user - new user for updating in database
      * @returnc - updating user
      */
-    User updateByLogin(String login, User user);
-
-    /**
-     * ervice for updating user by id
-     * @param id - user's id
-     * @param user - new user for updating in database
-     * @return - updating user
-     */
-    User updateById(long id, User user);
-
+    User update(User user);
 }

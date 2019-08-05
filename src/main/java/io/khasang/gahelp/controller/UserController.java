@@ -69,12 +69,14 @@ public class UserController {
     @PutMapping(value = "/update/{login}")
     @ResponseBody
     public User updateUser(@RequestBody User user, @PathVariable("login") String login){
-        return userService.updateByLogin(login, user);
+        user.setLogin(login);
+        return userService.update(user);
     }
 
     @RequestMapping(value = "/update/id/{id}")
     @ResponseBody
     public User updateUserById(@RequestBody User user, @PathVariable("id") long id){
-        return userService.updateById(id, user);
+        user.setId(id);
+        return userService.update(user);
     }
 }
