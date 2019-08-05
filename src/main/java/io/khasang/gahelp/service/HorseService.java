@@ -36,4 +36,7 @@ public interface HorseService {
      * @return deleted horse
      */
     Horse delete(long id);
+
+    Horse updateById(long id, Horse horse);
+//    Horse updateById(long id, String name, String description);
 }

@@ -35,4 +35,6 @@ public interface BasicDao<T> {
      * @return deleted entity
      */
     T delete(T entity);
+
+    T updateById(long id, T entity);
 }

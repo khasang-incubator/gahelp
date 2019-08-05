@@ -36,4 +36,14 @@ public class HorseServiceImpl implements HorseService {
     public void setHorseDao(HorseDao horseDao) {
         this.horseDao = horseDao;
     }
+
+    @Override
+    public Horse updateById(long id, Horse horse) {
+        return horseDao.updateById(id, horse);
+    }
+
+//    @Override
+//    public Horse updateById(long id, String name, String description) {
+//        return horseDao.updateById(id, name, description);
+//    }
 }

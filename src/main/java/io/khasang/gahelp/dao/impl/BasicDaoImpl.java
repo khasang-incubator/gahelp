@@ -38,6 +38,12 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
     }
 
     @Override
+    public T updateById(long id, T entity) {
+        
+        return
+    }
+
+    @Override
     public List<T> getAll() {
         // select * from horses;
         CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();

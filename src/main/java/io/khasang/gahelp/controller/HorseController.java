@@ -44,4 +44,9 @@ public class HorseController {
         return horseService.delete(id);
     }
 
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    public Horse updateHorseById(@PathVariable("id") long id, @RequestBody Horse horse) {
+        return horseService.updateById(id, horse);
+    }
 }

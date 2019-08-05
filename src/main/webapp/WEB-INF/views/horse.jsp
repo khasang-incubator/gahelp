@@ -45,6 +45,8 @@
         });
     };
 
+
+
     var RestPost = function (name, description) {
         var JSONObject = {
             'name': name,
@@ -65,10 +67,49 @@
             error: function (jqXHR, testStatus, errorThrown) {
                 $('#response').html(JSON.stringify(jqXHR))
             }
-
         });
     };
 
+    var RestDelete = function (id) {
+        $.ajax({
+            type: 'DELETE',
+            url: service + '/delete/' + id,
+            dataType: 'json',
+            accept: 'json',
+            contentType: 'application/json;utf-8',
+            async: false,
+            success: function (result) {
+                $('#response').html(JSON.stringify(result))
+            },
+            error: function (jqXHR, testStatus, errorThrown) {
+                $('#response').html(JSON.stringify(jqXHR))
+            }
+        });
+    };
+
+    var RestUpdate = function (id, name, description) {
+        var JSONObject = {
+            'id': id,
+            'name': name,
+            'description': description
+        };
+
+        $.ajax({
+            type: 'PUT',
+            url: service + '/update/' + id,
+            dataType: 'json',
+            data: JSON.stringify(JSONObject),
+            accept: 'json',
+            contentType: 'application/json;utf-8',
+            async: false,
+            success: function (result) {
+                $('#response').html(JSON.stringify(result))
+            },
+            error: function (jqXHR, testStatus, errorThrown) {
+                $('#response').html(JSON.stringify(jqXHR))
+            }
+        });
+    };
 </script>
 
 <body>
@@ -102,6 +143,24 @@
             name: <input id="horseName" value="Risak"/>
             description: <input id="horseDescription" value="fast"/>
             <button type="button" onclick="RestPost($('#horseName').val(), $('#horseDescription').val())">try</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Delete horse by id - <code><strong>DELETE</strong></code></td>
+        <td>/horse/delete/{id}</td>
+        <td>
+            id: <input id="deleteHorseByID" value="1"/>
+            <button type="button" onclick="RestDelete($('#deleteHorseByID').val())">try</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Update horse - <code><strong>PUT</strong></code></td>
+        <td>/horse/update</td>
+        <td>
+            id: <input id="updatedHorseId" value="1"/>
+            name: <input id="updatedHorseName" value="Max"/>
+            description: <input id="updatedHorseDescription" value="fast"/>
+            <button type="button" onclick="RestUpdate($('#updatedHorseId').val(), $('#updatedHorseName').val(), $('#updatedHorseDescription').val())">try</button>
         </td>
     </tr>
 </table>
