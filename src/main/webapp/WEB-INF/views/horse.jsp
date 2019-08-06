@@ -43,11 +43,11 @@
 <%--                    out.println("<li>"+horse+"</li>");--%>
 <%--                }--%>
 <%--                %>--%>
-            //TODO как вывести списокам всех лошадей?
+            //TODO как вывести списком всех коней?
             // Где я должен переопределить метод toSting, если я захочу особым образом выводить данные?
             // Как мне отсюда обратиться к java коду и как из java вернуть результат в jsp?
-            $('#response').html(JSON.stringify(result.toString()))
-            // $('#response').html(JSON.stringify(result))
+            // $('#response').html(JSON.stringify(result));
+            $('#response').html(JSON.stringify(result, ['id','name', 'description']).concat(','));
         },
         error: function (jqXHR, testStatus, errorThrown) {
             $('#response').html(JSON.stringify(jqXHR))
