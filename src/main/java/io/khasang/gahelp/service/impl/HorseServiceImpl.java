@@ -39,11 +39,7 @@ public class HorseServiceImpl implements HorseService {
 
     @Override
     public Horse updateById(long id, Horse horse) {
-        return horseDao.updateById(id, horse);
+        horse.setId(id);
+        return horseDao.updateById(horse);
     }
-
-//    @Override
-//    public Horse updateById(long id, String name, String description) {
-//        return horseDao.updateById(id, name, description);
-//    }
 }

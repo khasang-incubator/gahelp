@@ -1,7 +1,5 @@
 package io.khasang.gahelp.dao;
 
-import io.khasang.gahelp.entity.Horse;
-
 import java.util.List;
 
 public interface BasicDao<T> {
@@ -36,5 +34,11 @@ public interface BasicDao<T> {
      */
     T delete(T entity);
 
-    T updateById(long id, T entity);
+    /**
+     * service for update entity
+     *
+     * @param entity - entity for update
+     * @return updated entity
+     */
+    T updateById(T entity);
 }

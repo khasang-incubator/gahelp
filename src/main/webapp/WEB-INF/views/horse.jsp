@@ -89,7 +89,6 @@
 
     var RestUpdate = function (id, name, description) {
         var JSONObject = {
-            'id': id,
             'name': name,
             'description': description
         };
