@@ -73,6 +73,7 @@ public class LogSheetControllerIntegrationTest {
 
     @Test
     public void checkUpdate() {
+        // set proper id for updating
         int updateId = 50;
 
         LogSheet logSheet = updatedLogSheet();
