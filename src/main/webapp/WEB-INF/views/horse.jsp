@@ -1,3 +1,5 @@
+<%@ page import="io.khasang.gahelp.entity.Horse" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -8,24 +10,6 @@
 
 <script>
     var service = 'http://localhost:8080/horse'
-
-    var RestGetAll = function () {
-        $.ajax({
-            type: 'GET',
-            url: service + '/all',
-            dataType: 'json',
-            accept: 'json',
-            contentType: 'application/json;utf-8',
-            async: false,
-            success: function (result) {
-                $('#response').html(JSON.stringify(result))
-            },
-            error: function (jqXHR, testStatus, errorThrown) {
-                $('#response').html(JSON.stringify(jqXHR))
-            }
-
-        });
-    };
 
     var RestGet = function (id) {
         $.ajax({
@@ -41,8 +25,34 @@
             error: function (jqXHR, testStatus, errorThrown) {
                 $('#response').html(JSON.stringify(jqXHR))
             }
-
         });
+    };
+
+    var RestGetAll = function () {
+        $.ajax({
+            type: 'GET',
+            url: service + '/all',
+            dataType: 'json',
+            accept: 'json',
+            contentType: 'application/json;utf-8',
+            async: false,
+        success: function (result) {
+<%--                <%--%>
+<%--                List<Horse> horses = (List<Horse>) request.getAttribute("name");--%>
+<%--                for(Horse horse: horses){--%>
+<%--                    out.println("<li>"+horse+"</li>");--%>
+<%--                }--%>
+<%--                %>--%>
+            //TODO как вывести списокам всех лошадей? и где я должен переопределить метод toSting,
+            // если я захочу особым образом выводить данные?
+            // Как мне отсюда обратиться к java коду и как из java вернуть результат в jsp?
+            $('#response').html(JSON.stringify(result.toString()))
+            // $('#response').html(JSON.stringify(result))
+        },
+        error: function (jqXHR, testStatus, errorThrown) {
+            $('#response').html(JSON.stringify(jqXHR))
+        }
+    });
     };
 
 
@@ -170,6 +180,5 @@
     </div>
     <div class="panel-body" id="response"></div>
 </div>
-
 </body>
 </html>
