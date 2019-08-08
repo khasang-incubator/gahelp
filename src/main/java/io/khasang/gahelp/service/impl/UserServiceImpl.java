@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getBlocked() {
-        return userDao.getBlocked();
+        return userDao.getIsBlocked();
     }
 
     @Override

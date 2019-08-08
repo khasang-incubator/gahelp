@@ -54,16 +54,7 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
         return entity;
     }
 
-    @Override
-    public <V> List<T> getAllByField(String fieldName, V value) {
-        CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
-        CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
-        Root<T> root = criteriaQuery.from(entityClass);
-        criteriaQuery.select(root).where(builder.equal(root.get(fieldName), value));
-        return getSession().createQuery(criteriaQuery).list();
-    }
-
-    private Session getSession() {
+    protected Session getSession() {
         return sessionFactory.getCurrentSession();
     }
 

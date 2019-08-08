@@ -13,17 +13,17 @@ public interface UserDao extends BasicDao<User> {
     List<User> getByName(String name);
 
     /**
+     * service for getting blocked users
+     * @return - list of blocked users
+     */
+    List<User> getIsBlocked();
+
+    /**
      * service for getting user by login-name
      * @param login - login-name
      * @return user with specific login-name
      */
     User getByLogin(String login);
 
-    //TODO: getByRoleId or getByRoleName
 
-    /**
-     * service for getting blocked user
-     * @return list of blocked users
-     */
-    List<User> getBlocked();
 }

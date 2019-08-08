@@ -42,13 +42,4 @@ public interface BasicDao<T> {
      * @return updated entity
      */
     T update(T entity);
-
-    /**
-     * service for getting a list entities with a field value
-     * @param fieldName - field name in entity
-     * @param value - value of the entity field to find
-     * @param <V> - type of the field
-     * @return entities matching the search conditions
-     */
-    <V> List<T> getAllByField(String fieldName, V value);
 }
