@@ -48,7 +48,7 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
         return getSession().createQuery(criteriaQuery).list();
     }
 
-    private Session getSession() {
+    protected Session getSession() {
         return sessionFactory.getCurrentSession();
     }
 

@@ -44,4 +44,10 @@ public class HorseController {
         return horseService.delete(id);
     }
 
+    @RequestMapping(value = "/name/{name}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Horse> getHorsesByName (@PathVariable("name") String name) {
+        return horseService.getByname(name);
+    }
+
 }
