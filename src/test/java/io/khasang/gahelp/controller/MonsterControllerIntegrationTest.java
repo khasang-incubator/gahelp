@@ -8,7 +8,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Logger;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
