@@ -40,9 +40,9 @@ public class RoleController {
         return roleService.getAll();
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
     @ResponseBody
-    public Role updateRoleById(@PathVariable("id") long id, @RequestBody Role role) {
-        return roleService.updateRoleById(role, id);
+    public Role updateRole(@RequestBody Role role) {
+        return roleService.updateRole(role);
     }
 }

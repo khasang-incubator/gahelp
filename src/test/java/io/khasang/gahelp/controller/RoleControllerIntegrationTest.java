@@ -55,18 +55,17 @@ public class RoleControllerIntegrationTest {
 
     @Test
     public void checkUpdateRole() {
-        int updateId = 27;
-
         Role updatedRole = updatedRole();
-        HttpEntity<Role> entity = new HttpEntity<>(updatedRole, null);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        HttpEntity<Role> entity = new HttpEntity<>(updatedRole, headers);
 
         RestTemplate template = new RestTemplate();
         ResponseEntity<Role> responseEntity = template.exchange(
-                ROOT + UPDATE + "/{id}",
+                ROOT + UPDATE,
                 HttpMethod.PUT,
                 entity,
-                Role.class,
-                updateId
+                Role.class
         );
         assertNotNull(responseEntity.getBody());
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -118,6 +117,7 @@ public class RoleControllerIntegrationTest {
 
     private Role updatedRole() {
         Role role = new Role();
+        role.setId(25);
         role.setName("User");
         role.setType("Casual");
         role.setDescription("Role for having fun");
