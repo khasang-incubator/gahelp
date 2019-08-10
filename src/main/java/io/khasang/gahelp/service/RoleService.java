@@ -40,9 +40,8 @@ public interface RoleService {
     /**
      * Service to update role
      *
-     * @param id   - id of role to update
      * @param role - update data for role
      * @return updated role
      */
-    Role updateRoleById(Role role, long id);
+    Role updateRole(Role role);
 }
