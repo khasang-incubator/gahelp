@@ -82,7 +82,7 @@ public class MonsterControllerIntegrationTest {
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
         Monster monster = createMonster();
-        System.out.println("Monster with id =" + monster.getId() + " has OLD hp: --> "+monster.getHealthPoint());
+        System.out.println("Monster with id =" + monster.getId() + " has OLD hp: --> " + monster.getHealthPoint());
         int newMonsterHealthPoint = monster.getHealthPoint() + getRandomIntForHpAdd();
         System.out.println("Monster with id =" + monster.getId() + " has HEW hp: --> " + newMonsterHealthPoint);
         monster.setHealthPoint(newMonsterHealthPoint);
