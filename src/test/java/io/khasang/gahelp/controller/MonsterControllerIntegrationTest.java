@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -82,17 +83,18 @@ public class MonsterControllerIntegrationTest {
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
         Monster monster = createMonster();
+        System.out.println("Monster with id =" + monster.getId() + " has OLD hp: --> "+monster.getHealthPoint());
         int newMonsterHealthPoint = monster.getHealthPoint() + getRandomIntForHpAdd();
+        System.out.println("Monster with id =" + monster.getId() + " has HEW hp: --> " + newMonsterHealthPoint);
         monster.setHealthPoint(newMonsterHealthPoint);
         HttpEntity<Monster> entity = new HttpEntity<>(monster, headers);
 
         RestTemplate template = new RestTemplate();
         ResponseEntity<Monster> responseEntity = template.exchange(
-                ROOT + UPDATE + "/{id}",
+                ROOT + UPDATE,
                 HttpMethod.PUT,
                 entity,
-                Monster.class,
-                monster.getId()
+                Monster.class
         );
 
         RestTemplate restTemplate2 = new RestTemplate();
@@ -112,7 +114,7 @@ public class MonsterControllerIntegrationTest {
     }
 
     private int getRandomIntForHpAdd() {
-        return new Random().nextInt(100);
+        return new Random().nextInt(95);
     }
 
     private Monster createMonster() {

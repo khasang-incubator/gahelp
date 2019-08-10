@@ -38,11 +38,10 @@ public class MonsterController {
         return monsterService.delete(id);
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
     @ResponseBody
-    public Monster updateMonsterById(@PathVariable("id") long id
-            , @RequestBody Monster monster) {
-        return monsterService.updateMonsterById(id, monster);
+    public Monster updateMonster(@RequestBody Monster monster) {
+        return monsterService.updateMonster(monster);
     }
 
     @Autowired

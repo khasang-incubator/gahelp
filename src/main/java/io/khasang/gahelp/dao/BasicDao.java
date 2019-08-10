@@ -37,8 +37,8 @@ public interface BasicDao<T> {
     /**
      * service for updateMonsterById entity
      *
-     * @param byId - entity for updateMonsterById
+     * @param entity - entity for updateMonsterById
      * @return updateMonsterById entity
      */
-    T update(T byId);
+    T update(T entity);
 }
