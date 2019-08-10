@@ -9,28 +9,20 @@ public class Monster {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    //monster type (orc, ogr, goblin...)
+    private String type;
+    private int healthPoint;
+    private int mana;
+    private int strength;
+    private int intelligence;
+    private int agility;
+    private int endurance;
+    private int level;
+    private int intuition;
+
     public void setId(long id) {
         this.id = id;
     }
-
-    //тип монстра (орк, огр, гоблин...)
-    private String type;
-    //очки здоровья
-    private int healthPoint;
-    //мана
-    private int mana;
-    //сила
-    private int strength;
-    //интелект
-    private int intelligence;
-    //ловкость
-    private int agility;
-    //выносливость
-    private int endurance;
-    //уровень-опыт
-    private int level;
-    //интуиция
-    private int intuition;
 
     public long getId() {
         return id;

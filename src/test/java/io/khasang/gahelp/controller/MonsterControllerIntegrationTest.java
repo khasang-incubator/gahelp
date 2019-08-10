@@ -78,9 +78,13 @@ public class MonsterControllerIntegrationTest {
 
     @Test
     public void checkUpdateMonster() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
         Monster monster = createMonster();
-        monster.setHealthPoint(monster.getHealthPoint() + new Random().nextInt(100));
-        HttpEntity<Monster> entity = new HttpEntity<>(monster, null);
+        int newMonsterHealthPoint = monster.getHealthPoint() + getRandomIntForHpAdd();
+        monster.setHealthPoint(newMonsterHealthPoint);
+        HttpEntity<Monster> entity = new HttpEntity<>(monster, headers);
 
         RestTemplate template = new RestTemplate();
         ResponseEntity<Monster> responseEntity = template.exchange(
@@ -91,9 +95,24 @@ public class MonsterControllerIntegrationTest {
                 monster.getId()
         );
 
+        RestTemplate restTemplate2 = new RestTemplate();
+        Monster getMonster = restTemplate2.exchange(
+                ROOT + GET + "/{id}",
+                HttpMethod.GET,
+                null,
+                Monster.class,
+                monster.getId()
+        ).getBody();
+
+        assertEquals(newMonsterHealthPoint, getMonster.getHealthPoint());
+
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Monster receivedMonster = responseEntity.getBody();
         assertNotNull(receivedMonster);
+    }
+
+    private int getRandomIntForHpAdd() {
+        return new Random().nextInt(100);
     }
 
     private Monster createMonster() {

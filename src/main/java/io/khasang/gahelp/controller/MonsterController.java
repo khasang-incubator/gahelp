@@ -14,15 +14,6 @@ public class MonsterController {
 
     private MonsterService monsterService;
 
-    @Autowired
-    public void setMonsterService(MonsterService monsterService) {
-        this.monsterService = monsterService;
-    }
-
-    public MonsterController(MonsterService monsterService) {
-        this.monsterService = monsterService;
-    }
-
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
     public Monster addMonster(@RequestBody Monster monster) {
@@ -49,16 +40,13 @@ public class MonsterController {
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     @ResponseBody
-    public Monster updateMonsterById(@PathVariable("id") long id, @RequestBody Monster monster) {
+    public Monster updateMonsterById(@PathVariable("id") long id
+            , @RequestBody Monster monster) {
         return monsterService.updateMonsterById(id, monster);
     }
 
-
-
-//    //TODO так и не смог понять как удалить всё
-//    @RequestMapping(value = "/deleteall", method = RequestMethod.DELETE)
-//    @ResponseBody
-//    public List<Monster> deleteAll() {
-//        return monsterService.deleteAll();
-//    }
+    @Autowired
+    public void setMonsterService(MonsterService monsterService) {
+        this.monsterService = monsterService;
+    }
 }

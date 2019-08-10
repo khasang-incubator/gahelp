@@ -1,6 +1,7 @@
 package io.khasang.gahelp;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.AutoConfigurationExcludeFilter;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 

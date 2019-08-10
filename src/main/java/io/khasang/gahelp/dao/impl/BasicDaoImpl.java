@@ -43,17 +43,6 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
         return entity;
     }
 
-//    //TODO так и не смог понять как удалить всё
-//    @Override
-//    public List<T> deleteAll() {
-//        CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
-//        CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
-//        Root<T> root = criteriaQuery.from(entityClass);
-//
-//        criteriaQuery.select(root);
-//        return (List<T>) getSession().createQuery(String.valueOf(deleteAll()));
-//    }
-
     @Override
     public List<T> getAll() {
         // select * from horses;
