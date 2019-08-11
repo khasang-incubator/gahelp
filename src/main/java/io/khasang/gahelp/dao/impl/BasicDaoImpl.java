@@ -39,7 +39,7 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
 
     @Override
     public List<T> getAll() {
-        // select * from entityClass;
+        // select * from horses;
         CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
         CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
         Root<T> root = criteriaQuery.from(entityClass);
