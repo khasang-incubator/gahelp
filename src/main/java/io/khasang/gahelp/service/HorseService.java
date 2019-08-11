@@ -38,6 +38,14 @@ public interface HorseService {
     Horse delete(long id);
 
     /**
+     * service for updating horse
+     *
+     * @param horse for update
+     * @return updated horse
+     */
+    Horse update(Horse horse);
+
+    /**
      * service for getting all horse by specific name
      *
      * @return all horses by specific name

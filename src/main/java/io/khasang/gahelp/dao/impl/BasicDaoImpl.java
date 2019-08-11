@@ -21,6 +21,12 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
     }
 
     @Override
+    public T update(T entity) {
+        getSession().update(entity);
+        return entity;
+    }
+
+    @Override
     public T add(T entity) {
         getSession().save(entity);
         return entity;

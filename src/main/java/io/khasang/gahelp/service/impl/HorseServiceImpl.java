@@ -28,6 +28,11 @@ public class HorseServiceImpl implements HorseService {
     }
 
     @Override
+    public Horse update(Horse horse) {
+        return horseDao.update(horse);
+    }
+
+    @Override
     public List<Horse> getByname(String name) {
         return horseDao.getByName(name);
     }
