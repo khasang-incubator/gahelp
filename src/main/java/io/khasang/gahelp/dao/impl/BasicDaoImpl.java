@@ -39,7 +39,7 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
 
     @Override
     public List<T> getAll() {
-        // select * from horses;
+        // select * from entityClass;
         CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
         CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
         Root<T> root = criteriaQuery.from(entityClass);
@@ -56,6 +56,7 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
 
     @Override
     public <V> List<T> getAllByField(String fieldName, V value) {
+        // Select * from entityClass where fieldName = value
         CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
         CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
         Root<T> root = criteriaQuery.from(entityClass);
@@ -63,7 +64,7 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
         return getSession().createQuery(criteriaQuery).list();
     }
 
-    private Session getSession() {
+    protected Session getSession() {
         return sessionFactory.getCurrentSession();
     }
 

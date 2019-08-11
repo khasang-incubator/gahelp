@@ -48,6 +48,12 @@ public class UserController {
         return userService.getBlocked();
     }
 
+    @RequestMapping(value = "/get/role/id/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<User> getByRoleId(@PathVariable("id") long id) {
+        return userService.getByRoleId(id);
+    }
+
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
     public List<User> getAll() {
@@ -69,12 +75,16 @@ public class UserController {
     @PutMapping(value = "/update/{login}")
     @ResponseBody
     public User updateUser(@RequestBody User user, @PathVariable("login") String login){
-        return userService.updateByLogin(login, user);
+        user.setLogin(login);
+        user.setId(userService.getByLogin(login).getId());
+        return userService.update(user);
     }
 
     @RequestMapping(value = "/update/id/{id}")
     @ResponseBody
     public User updateUserById(@RequestBody User user, @PathVariable("id") long id){
-        return userService.updateById(id, user);
+        user.setId(id);
+        user.setLogin(userService.getById(id).getLogin());
+        return userService.update(user);
     }
 }

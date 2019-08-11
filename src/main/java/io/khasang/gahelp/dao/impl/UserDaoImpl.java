@@ -12,8 +12,6 @@ public class UserDaoImpl extends BasicDaoImpl<User> implements UserDao {
 
     @Override
     public List<User> getByName(String name) {
-        // select * from users where name = name;
-        // for future
         return getAllByField("name", name);
     }
 
@@ -22,18 +20,13 @@ public class UserDaoImpl extends BasicDaoImpl<User> implements UserDao {
         return getAllByField("login", login).get(0);
     }
 
-    // TODO: нужно выбрать метод getByLogin либо выше, либо ниже. Какой?
-
-//    @Override
-//    public User getByLogin(String login) {
-//        return sessionFactory.getCurrentSession().byNaturalId(User.class)
-//                .using("login", login).load();
-//    }
-
     @Override
     public List<User> getBlocked() {
-        // select * from users where isBlocked = true;
-        // for future
-        return getAllByField("isBlocked", false);
+        return getAllByField("isBlocked", true);
+    }
+
+    @Override
+    public List<User> getByRoleId(long id) {
+        return getAllByField("roleId", id);
     }
 }

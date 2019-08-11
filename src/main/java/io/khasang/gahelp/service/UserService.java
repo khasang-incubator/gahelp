@@ -67,18 +67,15 @@ public interface UserService {
 
     /**
      * ervice for updating user by login
-     * @param login - user's login
      * @param user - new user for updating in database
      * @returnc - updating user
      */
-    User updateByLogin(String login, User user);
+    User update(User user);
 
     /**
-     * ervice for updating user by id
-     * @param id - user's id
-     * @param user - new user for updating in database
-     * @return - updating user
+     * service for getting users with specific role
+     * @param id - specific role id
+     * @return list of users with specific role
      */
-    User updateById(long id, User user);
-
+    List<User> getByRoleId(long id);
 }

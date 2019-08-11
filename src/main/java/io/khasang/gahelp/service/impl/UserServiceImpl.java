@@ -57,35 +57,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateByLogin(String login, User user) {
-        user.setLogin(login);
-        return userDao.update(preset(user));
+    public User update(User user) {
+        return userDao.update(user);
     }
 
     @Override
-    public User updateById(long id, User user) {
-        user.setId(id);
-        user.setLogin(null);
-        return userDao.update(preset(user));
-    }
-
-    private User preset(User user) {
-        //TODO: нужно определиться.
-        // вынес на уровень сервиса проверку пароля в запросе.
-        // Если пароль = null, то оставляем старый
-        // Эта задача требует административного решения,
-        // т.к., возможно, при =null пароль нужно сбросить.
-        if (user.getPassword() == null) {
-            user.setPassword(getByLogin(user.getLogin()).getPassword());
-        } else {
-            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        }
-
-        if (user.getLogin() != null) {
-            user.setId(getByLogin(user.getLogin()).getId());
-        } else {
-            user.setLogin(getById(user.getId()).getLogin());
-        }
-        return user;
+    public List<User> getByRoleId(long id) {
+        return userDao.getByRoleId(id);
     }
 }

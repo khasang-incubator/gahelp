@@ -46,7 +46,7 @@ public interface BasicDao<T> {
     /**
      * service for getting a list entities with a field value
      * @param fieldName - field name in entity
-     * @param value - value of the entity field to find
+     * @param value - value of the entity's field to find
      * @param <V> - type of the field
      * @return entities matching the search conditions
      */

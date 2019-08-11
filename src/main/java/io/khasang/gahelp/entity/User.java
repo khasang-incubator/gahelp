@@ -52,19 +52,19 @@ public class User {
         this.name = name;
     }
 
-    public boolean isBlocked() {
-        return isBlocked;
-    }
-
-    public void setIsBlocked(boolean blocked) {
-        isBlocked = blocked;
-    }
-
     public int getRoleId() {
         return roleId;
     }
 
     public void setRoleId(int roleId) {
         this.roleId = roleId;
+    }
+
+    public boolean isBlocked() {
+        return isBlocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        isBlocked = blocked;
     }
 }

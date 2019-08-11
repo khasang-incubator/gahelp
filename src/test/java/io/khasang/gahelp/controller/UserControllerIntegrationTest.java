@@ -17,6 +17,7 @@ public class UserControllerIntegrationTest {
     private static final String GET_ID = "/get/id";
     private static final String GET_NAME = "/get/name";
     private static final String GET_BLOCKED = "/get/blocked";
+    private static final String GET_ROLE_ID = "/get/role/id";
     private static final String ALL = "/all";
     private static final String DELETE_LOGIN = "/delete";
     private static final String DELETE_ID = "/delete/id";
@@ -24,19 +25,19 @@ public class UserControllerIntegrationTest {
     private static final String UPDATE_ID = "/update/id";
 
     private static final String USER_NAME = "New user";
+    private static final int USER_ROLE_ID = 3;
 
     @Test
     public void checkUpdateLogin() {
-        User user = createUser();
+        User user = createUser(false);
         RestTemplate template = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
         String oldLogin = user.getLogin();
-//        user.setLogin("A" + System.currentTimeMillis());
         user.setName("123");
         user.setRoleId(11);
-        user.setIsBlocked(false);
+        user.setBlocked(false);
 
         HttpEntity<User> entity = new HttpEntity<>(user, headers);
 
@@ -68,13 +69,13 @@ public class UserControllerIntegrationTest {
     @Test
     public void checkUpdateId() {
         RestTemplate template = new RestTemplate();
-        User user = createUser();
+        User user = createUser(false);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
         user.setName("123");
         user.setRoleId(11);
-        user.setIsBlocked(false);
+        user.setBlocked(false);
 
         HttpEntity<User> entity = new HttpEntity<>(user, headers);
 
@@ -105,8 +106,8 @@ public class UserControllerIntegrationTest {
     @Test
     public void checkDeleteId() {
         RestTemplate template = new RestTemplate();
-        List<User> usersBefore = responseList(template, ROOT + ALL, "");
-        User user = createUser();
+        List<User> usersBefore = responseList(template, ROOT + ALL);
+        User user = createUser(false);
 
         ResponseEntity<User> responseEntity = template.exchange(
                 ROOT + GET_ID + "/{id}",
@@ -125,7 +126,7 @@ public class UserControllerIntegrationTest {
                 User.class,
                 user.getId()
         );
-        List<User> usersAfter = responseList(template, ROOT + ALL, "");
+        List<User> usersAfter = responseList(template, ROOT + ALL);
 
         assertEquals(HttpStatus.OK, responseEntityDelete.getStatusCode());
         assertBeforeAfter(usersBefore, usersAfter, 0);
@@ -134,8 +135,8 @@ public class UserControllerIntegrationTest {
     @Test
     public void checkDeleteLogin() {
         RestTemplate template = new RestTemplate();
-        List<User> usersBefore = responseList(template, ROOT + ALL, "");
-        User user = createUser();
+        List<User> usersBefore = responseList(template, ROOT + ALL);
+        User user = createUser(false);
 
         ResponseEntity<User> responseEntity = template.exchange(
                 ROOT + GET_LOGIN + "/{login}",
@@ -154,7 +155,7 @@ public class UserControllerIntegrationTest {
                 User.class,
                 user.getLogin()
         );
-        List<User> usersAfter = responseList(template, ROOT + ALL, "");
+        List<User> usersAfter = responseList(template, ROOT + ALL);
 
         assertEquals(HttpStatus.OK, responseEntityDelete.getStatusCode());
         assertBeforeAfter(usersBefore, usersAfter, 0);
@@ -164,12 +165,40 @@ public class UserControllerIntegrationTest {
     public void checkGetBlocked() {
         RestTemplate template = new RestTemplate();
 
-        List<User> usersBefore = responseList(template, ROOT + GET_BLOCKED, "");
+        List<User> usersBefore = responseList(template, ROOT + GET_BLOCKED);
 
-        createUser();
-        createUser();
+        createUser(true);
+        createUser(true);
 
-        List<User> usersAfter = responseList(template, ROOT + GET_BLOCKED, "");
+        List<User> usersAfter = responseList(template, ROOT + GET_BLOCKED);
+
+        assertBeforeAfter(usersBefore, usersAfter, 2);
+    }
+
+    @Test
+    public void checkGetByRoleId() {
+        RestTemplate template = new RestTemplate();
+
+        List<User> usersBefore = template.exchange(
+                ROOT + GET_ROLE_ID + "/{id}",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<User>>() {
+                },
+                USER_ROLE_ID
+        ).getBody();
+
+        createUser(false);
+        createUser(false);
+
+        List<User> usersAfter = template.exchange(
+                ROOT + GET_ROLE_ID + "/{id}",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<User>>() {
+                },
+                USER_ROLE_ID
+        ).getBody();
 
         assertBeforeAfter(usersBefore, usersAfter, 2);
     }
@@ -178,19 +207,33 @@ public class UserControllerIntegrationTest {
     public void checkGetName() {
         RestTemplate template = new RestTemplate();
 
-        List<User> usersBefore = responseList(template, ROOT + GET_NAME, USER_NAME);
+        List<User> usersBefore = template.exchange(
+                ROOT + GET_NAME + "/" + USER_NAME,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<User>>() {
+                },
+                USER_NAME
+        ).getBody();
 
-        createUser();
-        createUser();
+        createUser(false);
+        createUser(false);
 
-        List<User> usersAfter = responseList(template, ROOT + GET_NAME, USER_NAME);
+        List<User> usersAfter = template.exchange(
+                ROOT + GET_NAME + "/" + USER_NAME,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<User>>() {
+                },
+                USER_NAME
+        ).getBody();
 
         assertBeforeAfter(usersBefore, usersAfter, 2);
     }
 
     @Test
     public void checkUserAddGetLoginGetId() {
-        User user = createUser();
+        User user = createUser(false);
 
         RestTemplate template = new RestTemplate();
 
@@ -220,12 +263,12 @@ public class UserControllerIntegrationTest {
     public void checkAllUsers() {
         RestTemplate template = new RestTemplate();
 
-        List<User> usersBefore = responseList(template, ROOT + ALL, "");
+        List<User> usersBefore = responseList(template, ROOT + ALL);
 
-        createUser();
-        createUser();
+        createUser(false);
+        createUser(false);
 
-        List<User> usersAfter = responseList(template, ROOT + ALL, "");
+        List<User> usersAfter = responseList(template, ROOT + ALL);
 
         assertBeforeAfter(usersBefore, usersAfter, 2);
     }
@@ -236,27 +279,31 @@ public class UserControllerIntegrationTest {
         assertEquals(before.size() + diffSize, after.size());
     }
 
-    private List<User> responseList(RestTemplate template, String url, String value) {
-        if (!value.isEmpty())
-            value = "/" + value;
-
+    /**
+     * Util method for getting list of all users from database
+     * @param template - current RestTemplate
+     * @param url - current URL for REST service
+     * @return - all users
+     */
+    private List<User> responseList(RestTemplate template, String url) {
         ResponseEntity<List<User>> responseEntityAfter = template.exchange(
-                url + value,
+                url,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<User>>() {
-                },
-                value
+                }
         );
         return responseEntityAfter.getBody();
     }
 
-    private User createUser() {
+    private User createUser(boolean isBlocked) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
         String login = "login" + System.currentTimeMillis();
 
         User user = prefillUser(login);
+        user.setBlocked(isBlocked);
+
         HttpEntity<User> entity = new HttpEntity<>(user, headers);
         RestTemplate restTemplate = new RestTemplate();
         User createdUser = restTemplate.exchange(
@@ -275,8 +322,7 @@ public class UserControllerIntegrationTest {
         User user = new User();
         user.setLogin(login);
         user.setName(USER_NAME);
-        user.setIsBlocked(true);
-        user.setRoleId(3);
+        user.setRoleId(USER_ROLE_ID);
         user.setPassword("pass");
         return user;
     }
