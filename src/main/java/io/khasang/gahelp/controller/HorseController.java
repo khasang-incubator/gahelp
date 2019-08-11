@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("/horse")
 public class HorseController {
 
+    // for pull request example
     private final HorseService horseService;
 
     public HorseController(HorseService horseService) {
@@ -41,6 +42,12 @@ public class HorseController {
     @ResponseBody
     public Horse deleteHorse(@PathVariable("id") long id) {
         return horseService.delete(id);
+    }
+
+    @RequestMapping(value = "/name/{name}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Horse> getHorsesByName (@PathVariable("name") String name) {
+        return horseService.getByname(name);
     }
 
 }

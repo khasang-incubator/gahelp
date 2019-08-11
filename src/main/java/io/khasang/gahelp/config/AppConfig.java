@@ -36,4 +36,9 @@ public class AppConfig {
     public PhysicalSkillDao physicalSkillDao(){
         return new PhysicalSkillDaoImpl(PhysicalSkill.class);
     }
+
+    @Bean
+    public MonsterDao monsterDao() {
+        return new MonsterDaoImpl(Monster.class);
+    }
 }

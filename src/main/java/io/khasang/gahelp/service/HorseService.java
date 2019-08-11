@@ -36,4 +36,11 @@ public interface HorseService {
      * @return deleted horse
      */
     Horse delete(long id);
+
+    /**
+     * service for getting all horse by specific name
+     *
+     * @return all horses by specific name
+     */
+    List<Horse> getByname(String name);
 }

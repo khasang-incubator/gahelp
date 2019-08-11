@@ -25,6 +25,11 @@ public class AppController {
         return "status";
     }
 
+    @RequestMapping("/horsemenu")
+    public String getHorseMenu() {
+        return "horse";
+    }
+
     // http://localhost:8080/hello
     @RequestMapping("/hello/{name}")
     public String getHelloPage(@PathVariable("name") String name, Model model) {
