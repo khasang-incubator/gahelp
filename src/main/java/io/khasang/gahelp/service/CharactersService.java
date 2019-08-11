@@ -1,17 +1,17 @@
 package io.khasang.gahelp.service;
 
-import io.khasang.gahelp.entity.Character;
+import io.khasang.gahelp.entity.Characters;
 
 import java.util.List;
 
-public interface CharacterService {
+public interface CharactersService {
     /**
      * Service to add character
      *
-     * @param character - character to add
+     * @param characters - character to add
      * @return character that been added
      */
-    Character add(Character character);
+    Characters add(Characters characters);
 
     /**
      * Service to get character by id
@@ -19,7 +19,7 @@ public interface CharacterService {
      * @param id - id of character to get
      * @return specific character by id
      */
-    Character getById(long id);
+    Characters getById(long id);
 
     /**
      * Service to delete character
@@ -27,21 +27,20 @@ public interface CharacterService {
      * @param id - id of character to be deleted
      * @return deleted character
      */
-    Character deleteById(long id);
+    Characters deleteById(long id);
 
     /**
      * Service to update character
      *
-     * @param id        - id of character to be updated
-     * @param character - data to update in character
+     * @param characters - data to update in character
      * @return updated character
      */
-    Character updateById(Character character, long id);
+    Characters update(Characters characters);
 
     /**
      * Service to get all characters
      *
      * @return List of all characters
      */
-    List<Character> getAll();
+    List<Characters> getAll();
 }

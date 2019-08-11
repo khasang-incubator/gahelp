@@ -1,10 +1,10 @@
 package io.khasang.gahelp.config;
 
-import io.khasang.gahelp.dao.CharacterDao;
+import io.khasang.gahelp.dao.CharactersDao;
 import io.khasang.gahelp.dao.HorseDao;
-import io.khasang.gahelp.dao.impl.CharacterDaoImpl;
+import io.khasang.gahelp.dao.impl.CharactersDaoImpl;
 import io.khasang.gahelp.dao.impl.HorseDaoImpl;
-import io.khasang.gahelp.entity.Character;
+import io.khasang.gahelp.entity.Characters;
 import io.khasang.gahelp.entity.Horse;
 import io.khasang.gahelp.model.Cat;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +25,7 @@ public class AppConfig {
     }
 
     @Bean
-    public CharacterDao characterDao() {
-        return new CharacterDaoImpl(Character.class);
+    public CharactersDao characterDao() {
+        return new CharactersDaoImpl(Characters.class);
     }
 }
