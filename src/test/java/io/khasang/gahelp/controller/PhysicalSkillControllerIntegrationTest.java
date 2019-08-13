@@ -27,9 +27,8 @@ public class PhysicalSkillControllerIntegrationTest {
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
         physicalSkill.setName("123");
-        physicalSkill.setIsLearned(true);
+        physicalSkill.setDescription("very fastest");
         physicalSkill.setPowerOfSkill(10);
-        physicalSkill.setMinLevelCharacter(1);
 
         HttpEntity<PhysicalSkill> entity = new HttpEntity<>(physicalSkill, headers);
 
@@ -171,9 +170,8 @@ public class PhysicalSkillControllerIntegrationTest {
     private PhysicalSkill prefillPhisicalSkill() {
         PhysicalSkill physicalSkill = new PhysicalSkill();
         physicalSkill.setName("Craft");
-        physicalSkill.setMinLevelCharacter(10);
+        physicalSkill.setDescription("fast");
         physicalSkill.setPowerOfSkill(50);
-        physicalSkill.setIsLearned(false);
         return physicalSkill;
     }
 }
