@@ -1,6 +1,6 @@
 package io.khasang.gahelp.controller;
 
-import io.khasang.gahelp.entity.PhysicalSkill;
+import io.khasang.gahelp.entity.MagicalSkill;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -11,8 +11,8 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class PhysicalSkillControllerIntegrationTest {
-    private static final String ROOT = "http://localhost:8080/phys-skill";
+public class MagicalSkillControllerIntegrationTest {
+    private static final String ROOT = "http://localhost:8080/mag-skill";
     private static final String ADD = "/add";
     private static final String GET = "/get";
     private static final String ALL = "/all";
@@ -20,78 +20,78 @@ public class PhysicalSkillControllerIntegrationTest {
     private static final String UPDATE = "/update";
 
     @Test
-    public void checkUpdatePhysicalSkillId() {
+    public void checkUpdateMagicalSkillId() {
         RestTemplate template = new RestTemplate();
-        PhysicalSkill physicalSkill = createPhysicalSkill();
+        MagicalSkill magicalSkill = createMagicalSkill();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        physicalSkill.setName("123");
-        physicalSkill.setDescription("very fastest");
-        physicalSkill.setPowerOfSkill(10);
+        magicalSkill.setName("123");
+        magicalSkill.setDescription("very fastest");
+        magicalSkill.setPowerOfSkill(10);
 
-        HttpEntity<PhysicalSkill> entity = new HttpEntity<>(physicalSkill, headers);
+        HttpEntity<MagicalSkill> entity = new HttpEntity<>(magicalSkill, headers);
 
-        ResponseEntity<PhysicalSkill> responseEntityUpdate = template.exchange(
+        ResponseEntity<MagicalSkill> responseEntityUpdate = template.exchange(
                 ROOT + UPDATE + "/{id}",
                 HttpMethod.PUT,
                 entity,
-                PhysicalSkill.class,
-                physicalSkill.getId()
+                MagicalSkill.class,
+                magicalSkill.getId()
         );
 
         assertEquals(HttpStatus.OK, responseEntityUpdate.getStatusCode());
 
-        ResponseEntity<PhysicalSkill> responseEntity = template.exchange(
+        ResponseEntity<MagicalSkill> responseEntity = template.exchange(
                 ROOT + GET + "/{id}",
                 HttpMethod.GET,
                 null,
-                PhysicalSkill.class,
-                physicalSkill.getId()
+                MagicalSkill.class,
+                magicalSkill.getId()
         );
 
-        PhysicalSkill updatedSkill = responseEntity.getBody();
+        MagicalSkill updatedSkill = responseEntity.getBody();
 
-        assertEquals(physicalSkill.getName(), updatedSkill.getName());
-        assertEquals(physicalSkill.getPowerOfSkill(), updatedSkill.getPowerOfSkill());
+        assertEquals(magicalSkill.getName(), updatedSkill.getName());
+        assertEquals(magicalSkill.getPowerOfSkill(), updatedSkill.getPowerOfSkill());
     }
 
     @Test
-    public void checkDeletePhysicalSkill() {
+    public void checkDeleteMagicalSkill() {
         RestTemplate template = new RestTemplate();
-        List<PhysicalSkill> skillsBefore =  template.exchange(
+        List<MagicalSkill> skillsBefore =  template.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<PhysicalSkill>>() {
+                new ParameterizedTypeReference<List<MagicalSkill>>() {
                 }
         ).getBody();
 
-        PhysicalSkill phSkill = createPhysicalSkill();
+        MagicalSkill phSkill = createMagicalSkill();
 
-        ResponseEntity<PhysicalSkill> responseEntity = template.exchange(
+        ResponseEntity<MagicalSkill> responseEntity = template.exchange(
                 ROOT + GET + "/{id}",
                 HttpMethod.GET,
                 null,
-                PhysicalSkill.class,
+                MagicalSkill.class,
                 phSkill.getId()
         );
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertNotNull(responseEntity.getBody());
 
-        ResponseEntity<PhysicalSkill> responseEntityDelete = template.exchange(
+        ResponseEntity<MagicalSkill> responseEntityDelete = template.exchange(
                 ROOT + DELETE + "/{id}",
                 HttpMethod.DELETE,
                 null,
-                PhysicalSkill.class,
+                MagicalSkill.class,
                 phSkill.getId()
         );
 
-        List<PhysicalSkill> skillsAfter =  template.exchange(
+        List<MagicalSkill> skillsAfter =  template.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<PhysicalSkill>>() {
+                new ParameterizedTypeReference<List<MagicalSkill>>() {
                 }
         ).getBody();
         assertEquals(HttpStatus.OK, responseEntityDelete.getStatusCode());
@@ -101,44 +101,44 @@ public class PhysicalSkillControllerIntegrationTest {
     }
 
     @Test
-    public void checkPhysicalSkillAddGet() {
-        PhysicalSkill phSkill = createPhysicalSkill();
+    public void checkMagicalSkillAddGet() {
+        MagicalSkill phSkill = createMagicalSkill();
 
         RestTemplate template = new RestTemplate();
-        ResponseEntity<PhysicalSkill> responseEntity = template.exchange(
+        ResponseEntity<MagicalSkill> responseEntity = template.exchange(
                 ROOT + GET + "/{id}",
                 HttpMethod.GET,
                 null,
-                PhysicalSkill.class,
+                MagicalSkill.class,
                 phSkill.getId()
         );
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        PhysicalSkill receivedPhSkill = responseEntity.getBody();
+        MagicalSkill receivedPhSkill = responseEntity.getBody();
         assertNotNull(receivedPhSkill);
     }
 
     @Test
-    public void checkAllPhysicalSkills() {
+    public void checkAllMagicalSkills() {
         RestTemplate template = new RestTemplate();
 
 
-        List<PhysicalSkill> skillsBefore = template.exchange(
+        List<MagicalSkill> skillsBefore = template.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<PhysicalSkill>>() {
+                new ParameterizedTypeReference<List<MagicalSkill>>() {
                 }
         ).getBody();
 
-        createPhysicalSkill();
-        createPhysicalSkill();
+        createMagicalSkill();
+        createMagicalSkill();
 
-        List<PhysicalSkill> skillsAfter = template.exchange(
+        List<MagicalSkill> skillsAfter = template.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<PhysicalSkill>>() {
+                new ParameterizedTypeReference<List<MagicalSkill>>() {
                 }
         ).getBody();
 
@@ -147,31 +147,31 @@ public class PhysicalSkillControllerIntegrationTest {
         assertEquals(skillsBefore.size() + 2, skillsAfter.size());
     }
 
-    private PhysicalSkill createPhysicalSkill() {
+    private MagicalSkill createMagicalSkill() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        PhysicalSkill physicalSkill = prefillPhysicalSkill();
+        MagicalSkill magicalSkill = prefillMagicalSkill();
 
-        HttpEntity<PhysicalSkill> entity = new HttpEntity<>(physicalSkill, headers);
+        HttpEntity<MagicalSkill> entity = new HttpEntity<>(magicalSkill, headers);
         RestTemplate restTemplate = new RestTemplate();
-        PhysicalSkill createdPhysicalSkill = restTemplate.exchange(
+        MagicalSkill createdMagicalSkill = restTemplate.exchange(
                 ROOT + ADD,
                 HttpMethod.POST,
                 entity,
-                PhysicalSkill.class
+                MagicalSkill.class
         ).getBody();
 
-        assertNotNull(createdPhysicalSkill);
-        assertEquals("Craft", createdPhysicalSkill.getName());
-        return createdPhysicalSkill;
+        assertNotNull(createdMagicalSkill);
+        assertEquals("Craft", createdMagicalSkill.getName());
+        return createdMagicalSkill;
     }
 
-    private PhysicalSkill prefillPhysicalSkill() {
-        PhysicalSkill physicalSkill = new PhysicalSkill();
-        physicalSkill.setName("Craft");
-        physicalSkill.setDescription("fast");
-        physicalSkill.setPowerOfSkill(50);
-        return physicalSkill;
+    private MagicalSkill prefillMagicalSkill() {
+        MagicalSkill magicalSkill = new MagicalSkill();
+        magicalSkill.setName("Craft");
+        magicalSkill.setDescription("fast");
+        magicalSkill.setPowerOfSkill(50);
+        return magicalSkill;
     }
 }
