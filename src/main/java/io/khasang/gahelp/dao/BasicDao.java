@@ -42,11 +42,4 @@ public interface BasicDao<T> {
      */
     T delete(T entity);
 
-    /**
-     * service for updateMonsterById entity
-     *
-     * @param byId - entity for updateMonsterById
-     * @return updateMonsterById entity
-     */
-    T update(T byId);
 }
