@@ -66,9 +66,9 @@ public interface UserService {
     User deleteById(long id);
 
     /**
-     * ervice for updating user by login
+     * service for updating user by login
      * @param user - new user for updating in database
-     * @returnc - updating user
+     * @return - updating user
      */
     User update(User user);
 
