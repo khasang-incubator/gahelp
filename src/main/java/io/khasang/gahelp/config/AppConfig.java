@@ -40,4 +40,9 @@ public class AppConfig {
     public MagicalSkillDao magicalSkillDao(){
         return new MagicalSkillDaoImpl((MagicalSkill.class));
     }
+
+    @Bean
+    public CategoryDao categoryDao(){
+        return new CategoryDaoImpl(Category.class);
+    }
 }
