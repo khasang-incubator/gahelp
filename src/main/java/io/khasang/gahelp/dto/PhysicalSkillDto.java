@@ -1,15 +1,7 @@
-package io.khasang.gahelp.entity;
+package io.khasang.gahelp.dto;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "phys_skills")
-public class PhysicalSkill {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class PhysicalSkillDto{
     private long Id;
-
     private String name;
     private int timeToUse;
     private String description;
@@ -36,8 +28,8 @@ public class PhysicalSkill {
         return timeToUse;
     }
 
-    public void setTimeToUse(int powerOfSkill) {
-        this.timeToUse = powerOfSkill;
+    public void setTimeToUse(int timeToUse) {
+        this.timeToUse = timeToUse;
     }
 
     public String getDescription() {

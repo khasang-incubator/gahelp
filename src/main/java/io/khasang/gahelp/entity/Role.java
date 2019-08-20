@@ -1,27 +1,25 @@
 package io.khasang.gahelp.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
-@MappedSuperclass
-public abstract class BasicSkill {
+@Entity
+@Table(name = "role")
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long Id;
+    private long id;
 
     private String name;
+    private String type;
     private String description;
-    private int powerOfSkill;
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -32,12 +30,12 @@ public abstract class BasicSkill {
         this.name = name;
     }
 
-    public int getPowerOfSkill() {
-        return powerOfSkill;
+    public String getType() {
+        return type;
     }
 
-    public void setPowerOfSkill(int powerOfSkill) {
-        this.powerOfSkill = powerOfSkill;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getDescription() {

@@ -28,7 +28,7 @@ public class PhysicalSkillControllerIntegrationTest {
 
         physicalSkill.setName("123");
         physicalSkill.setDescription("very fastest");
-        physicalSkill.setPowerOfSkill(10);
+        physicalSkill.setTimeToUse(10);
 
         HttpEntity<PhysicalSkill> entity = new HttpEntity<>(physicalSkill, headers);
 
@@ -53,7 +53,7 @@ public class PhysicalSkillControllerIntegrationTest {
         PhysicalSkill updatedSkill = responseEntity.getBody();
 
         assertEquals(physicalSkill.getName(), updatedSkill.getName());
-        assertEquals(physicalSkill.getPowerOfSkill(), updatedSkill.getPowerOfSkill());
+        assertEquals(physicalSkill.getTimeToUse(), updatedSkill.getTimeToUse());
     }
 
     @Test
@@ -171,7 +171,7 @@ public class PhysicalSkillControllerIntegrationTest {
         PhysicalSkill physicalSkill = new PhysicalSkill();
         physicalSkill.setName("Craft");
         physicalSkill.setDescription("fast");
-        physicalSkill.setPowerOfSkill(50);
+        physicalSkill.setTimeToUse(50);
         return physicalSkill;
     }
 }
