@@ -12,7 +12,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy
 public class AppConfig {
     @Bean
-    public Cat cat(){
+    public Cat cat() {
         return new Cat("Yukki");
     }
 
@@ -22,12 +22,12 @@ public class AppConfig {
     }
 
     @Bean
-    public UserDao userDao(){
+    public UserDao userDao() {
         return new UserDaoImpl(User.class);
     }
 
     @Bean
-    public PhysicalSkillDao physicalSkillDao(){
+    public PhysicalSkillDao physicalSkillDao() {
         return new PhysicalSkillDaoImpl(PhysicalSkill.class);
     }
 
@@ -37,12 +37,7 @@ public class AppConfig {
     }
 
     @Bean
-    public MagicalSkillDao magicalSkillDao(){
+    public MagicalSkillDao magicalSkillDao() {
         return new MagicalSkillDaoImpl((MagicalSkill.class));
-    }
-
-    @Bean
-    public CategoryDao categoryDao(){
-        return new CategoryDaoImpl(Category.class);
     }
 }

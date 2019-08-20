@@ -1,7 +1,5 @@
 package io.khasang.gahelp.controller;
 
-import io.khasang.gahelp.entity.Category;
-import io.khasang.gahelp.entity.Product;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
