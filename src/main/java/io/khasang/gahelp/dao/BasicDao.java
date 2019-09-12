@@ -12,6 +12,14 @@ public interface BasicDao<T> {
     T add(T entity);
 
     /**
+     * service for adding entity
+     *
+     * @param entity for adding
+     * @return added entity
+     */
+    T update(T entity);
+
+    /**
      * service for getting entity by id
      *
      * @param id - entity's id
@@ -34,11 +42,4 @@ public interface BasicDao<T> {
      */
     T delete(T entity);
 
-    /**
-     * service for updateMonsterById entity
-     *
-     * @param byId - entity for updateMonsterById
-     * @return updateMonsterById entity
-     */
-    T update(T byId);
 }

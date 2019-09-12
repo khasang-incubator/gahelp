@@ -21,6 +21,12 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
     }
 
     @Override
+    public T update(T entity) {
+        getSession().update(entity);
+        return entity;
+    }
+
+    @Override
     public T add(T entity) {
         getSession().save(entity);
         return entity;
@@ -38,12 +44,6 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
     }
 
     @Override
-    public T update(T entity) {
-        getSession().update(entity);
-        return entity;
-    }
-
-    @Override
     public List<T> getAll() {
         // select * from horses;
         CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
@@ -54,7 +54,7 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
         return getSession().createQuery(criteriaQuery).list();
     }
 
-    private Session getSession() {
+    protected Session getSession() {
         return sessionFactory.getCurrentSession();
     }
 
