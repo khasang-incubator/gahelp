@@ -1,11 +1,13 @@
 package io.khasang.gahelp.controller;
 
 import io.khasang.gahelp.entity.Horse;
+import io.khasang.gahelp.entity.Mare;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -81,6 +83,20 @@ public class HorseControllerIntegrationTest {
         Horse horse = new Horse();
         horse.setName("Risak");
         horse.setDescription("Fast");
+
+        Mare mare1 = new Mare();
+        mare1.setName("Queen");
+        mare1.setDescription("obstinate");
+
+        Mare mare2 = new Mare();
+        mare2.setName("Burenka");
+        mare2.setDescription("sweet");
+
+        List<Mare> list = new ArrayList<>();
+        list.add(mare1);
+        list.add(mare2);
+
+        horse.setMares(list);
         return horse;
     }
 
