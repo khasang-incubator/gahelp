@@ -41,5 +41,4 @@ public interface BasicDao<T> {
      * @return deleted entity
      */
     T delete(T entity);
-
 }
