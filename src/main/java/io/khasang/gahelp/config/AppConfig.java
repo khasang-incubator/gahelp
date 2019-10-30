@@ -1,5 +1,8 @@
 package io.khasang.gahelp.config;
 
+import io.khasang.gahelp.dao.CharactersDao;
+import io.khasang.gahelp.dao.impl.CharactersDaoImpl;
+import io.khasang.gahelp.entity.Characters;
 import io.khasang.gahelp.dao.EmployeeDao;
 import io.khasang.gahelp.dao.HorseDao;
 import io.khasang.gahelp.dao.RoleDao;
@@ -40,6 +43,9 @@ public class AppConfig {
     }
 
     @Bean
+    public CharactersDao characterDao() {
+        return new CharactersDaoImpl(Characters.class);
+
     public RoleDao roleDao() {
         return new RoleDaoImpl(Role.class);
   

@@ -66,6 +66,8 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
         return entity;
     }
 
+
+    private Session getSession() {
     @Override
     public <V> List<T> getAllByField(String fieldName, V value) {
         // Select * from entityClass where fieldName = value
