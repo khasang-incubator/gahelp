@@ -69,6 +69,31 @@
         });
     };
 
+    var RestPut = function (id, name, description) {
+        var JSONObject = {
+            'id': id,
+            'name': name,
+            'description': description
+        };
+
+        $.ajax({
+            type: 'PUT',
+            url: service + '/update',
+            dataType: 'json',
+            data: JSON.stringify(JSONObject),
+            accept: 'json',
+            contentType: 'application/json;utf-8',
+            async: false,
+            success: function (result) {
+                $('#response').html(JSON.stringify(result))
+            },
+            error: function (jqXHR, testStatus, errorThrown) {
+                $('#response').html(JSON.stringify(jqXHR))
+            }
+
+        });
+    };
+
 </script>
 
 <body>
@@ -102,6 +127,17 @@
             name: <input id="horseName" value="Risak"/>
             description: <input id="horseDescription" value="fast"/>
             <button type="button" onclick="RestPost($('#horseName').val(), $('#horseDescription').val())">try</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Update horse - <code><strong>PUT</strong></code></td>
+        <td>/horse/update</td>
+        <td>
+            id: <input id="horseID" value=1>
+            name: <input id="horseNameForUpdate" value="Risak"/>
+            description: <input id="horseDescriptionForUpdate" value="fast"/>
+            <button type="button" onclick="RestPut($('#horseID').val(), $('#horseNameForUpdate').val(),
+             $('#horseDescriptionForUpdate').val())">try</button>
         </td>
     </tr>
 </table>

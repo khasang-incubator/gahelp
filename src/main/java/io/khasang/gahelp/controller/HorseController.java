@@ -2,7 +2,6 @@ package io.khasang.gahelp.controller;
 
 import io.khasang.gahelp.entity.Horse;
 import io.khasang.gahelp.service.HorseService;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +22,12 @@ public class HorseController {
     @ResponseBody
     public Horse addHorse(@RequestBody Horse horse) {
         return horseService.add(horse);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public Horse updateHorse(@RequestBody Horse horse) {
+        return horseService.update(horse);
     }
 
 //    @Secured(value = "ROLE_ADMIN")
