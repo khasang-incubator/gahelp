@@ -2,6 +2,9 @@ package io.khasang.gahelp.config;
 
 import io.khasang.gahelp.dao.EmployeeDao;
 import io.khasang.gahelp.dao.HorseDao;
+import io.khasang.gahelp.dao.RoleDao;
+import io.khasang.gahelp.dao.impl.RoleDaoImpl;
+import io.khasang.gahelp.entity.Role;
 import io.khasang.gahelp.dao.PhysicalSkillDao;
 import io.khasang.gahelp.dao.UserDao;
 import io.khasang.gahelp.dao.impl.PhysicalSkillDaoImpl;
@@ -37,6 +40,10 @@ public class AppConfig {
     }
 
     @Bean
+    public RoleDao roleDao() {
+        return new RoleDaoImpl(Role.class);
+  
+    @Bean
     public UserDao userDao(){
         return new UserDaoImpl(User.class);
     }
@@ -47,7 +54,6 @@ public class AppConfig {
     }
 
     @Bean
-
     public LogSheetDao logSheetDao() {
         return new LogSheetDaoImpl(LogSheet.class);
   
