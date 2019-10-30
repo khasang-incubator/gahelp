@@ -34,8 +34,7 @@ public class MonsterServiceImpl implements MonsterService {
     }
 
     @Override
-    public Monster updateMonsterById(long id, Monster monster) {
-        monster.setId(id);
+    public Monster updateMonster(Monster monster) {
         return monsterDao.update(monster);
     }
 

@@ -40,8 +40,7 @@ public interface MonsterService {
     /**
      * service for update monster by id
      *
-     * @param id - monster's id for update
-     * @return update monster
+     * @return updated monster
      */
-    Monster updateMonsterById(long id, Monster monster);
+    Monster updateMonster(Monster monster);
 }
