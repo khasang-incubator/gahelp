@@ -12,6 +12,14 @@ public interface BasicDao<T> {
     T add(T entity);
 
     /**
+     * service for adding entity
+     *
+     * @param entity for adding
+     * @return added entity
+     */
+    T update(T entity);
+
+    /**
      * service for getting entity by id
      *
      * @param id - entity's id
@@ -34,11 +42,11 @@ public interface BasicDao<T> {
      */
     T delete(T entity);
 
-    /**
-     * Service to update entity
-     *
-     * @param entity - entity to update
-     * @return updated entity
+     * service for getting a list entities with a field value
+     * @param fieldName - field name in entity
+     * @param value - value of the entity's field to find
+     * @param <V> - type of the field
+     * @return entities matching the search conditions
      */
-    T update(T entity);
+    <V> List<T> getAllByField(String fieldName, V value);
 }
