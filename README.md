@@ -7,10 +7,10 @@ This service was created to help people to set up an environment for board games
 Now, when you want to play board game next time, make sure to use GaHelp to increase you gaming experience.
 
 ## How to use the service: 
-- *. Login using *player* to manage a player
-  *. As *player* you are able to create player and keep track of your progress during the game.
+- * . Login using *player* to manage a player
+  * . As *player* you are able to create player and keep track of your progress during the game.
   
-- * .Login as *keeper* to manage the monsters
+- * . Login as *keeper* to manage the monsters
   * . As *keeper* you are able create and manage monster for players to compete with.
   
   ### Implemented techonologies:
