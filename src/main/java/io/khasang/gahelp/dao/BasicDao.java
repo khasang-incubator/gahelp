@@ -1,5 +1,7 @@
 package io.khasang.gahelp.dao;
 
+import io.khasang.gahelp.entity.Horse;
+
 import java.util.List;
 
 public interface BasicDao<T> {
@@ -42,4 +44,12 @@ public interface BasicDao<T> {
      */
     T delete(T entity);
 
+    /**
+     * service for getting a list entities with a field value
+     * @param fieldName - field name in entity
+     * @param value - value of the entity's field to find
+     * @param <V> - type of the field
+     * @return entities matching the search conditions
+     */
+    <V> List<T> getAllByField(String fieldName, V value);
 }
