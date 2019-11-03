@@ -39,7 +39,7 @@ public interface PhysicalSkillService {
     /**
      * service for updating physicalSkill
      *
-     * @param id - physicalSkill's id for update
+     * @param id            - physicalSkill's id for update
      * @param physicalSkill - new skill's data for update
      * @return updated physicalSkill
      */

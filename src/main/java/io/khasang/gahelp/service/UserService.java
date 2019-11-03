@@ -39,6 +39,7 @@ public interface UserService {
 
     /**
      * service for getting blocked user
+     *
      * @return list of blocked users
      */
     List<User> getBlocked();
@@ -60,6 +61,7 @@ public interface UserService {
 
     /**
      * service for deletting user by id
+     *
      * @param id - user's id for delete
      * @return - deleted user
      */
@@ -67,6 +69,7 @@ public interface UserService {
 
     /**
      * ervice for updating user by login
+     *
      * @param user - new user for updating in database
      * @returnc - updating user
      */
@@ -74,6 +77,7 @@ public interface UserService {
 
     /**
      * service for getting users with specific role
+     *
      * @param id - specific role id
      * @return list of users with specific role
      */

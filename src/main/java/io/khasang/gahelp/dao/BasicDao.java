@@ -42,7 +42,7 @@ public interface BasicDao<T> {
      */
     T delete(T entity);
 
-     * service for getting a list entities with a field value
+    /** service for getting a list entities with a field value
      * @param fieldName - field name in entity
      * @param value - value of the entity's field to find
      * @param <V> - type of the field

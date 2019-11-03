@@ -44,12 +44,6 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
     }
 
     @Override
-    public T update(T entity) {
-        getSession().update(entity);
-        return entity;
-    }
-
-    @Override
     public List<T> getAll() {
         // select * from horses;
         CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
@@ -58,12 +52,6 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
 
         criteriaQuery.select(root);
         return getSession().createQuery(criteriaQuery).list();
-    }
-
-    @Override
-    public T update(T entity) {
-        getSession().update(entity);
-        return entity;
     }
 
     @Override
