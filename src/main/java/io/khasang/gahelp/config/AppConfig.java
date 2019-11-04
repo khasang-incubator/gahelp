@@ -45,7 +45,9 @@ public class AppConfig {
     @Bean
     public CharactersDao characterDao() {
         return new CharactersDaoImpl(Characters.class);
+    }
 
+    @Bean
     public RoleDao roleDao() {
         return new RoleDaoImpl(Role.class);
     }
