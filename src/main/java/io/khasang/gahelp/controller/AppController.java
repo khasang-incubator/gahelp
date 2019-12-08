@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-//@ImportResource(value = "classpath:ioc.xml")
 public class AppController {
     private Cat cat;
     private Dog dog;
