@@ -19,7 +19,7 @@ public class AppController {
     private KnightService knightService;
     private CreateTable createTable;
 
-    @RequestMapping("/")
+    @RequestMapping("/status")
     public String getStatus() {
         return "status";
     }
